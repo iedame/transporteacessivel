@@ -27,3 +27,30 @@ Simplesmente conecte 3 botões utilizando 3 resistores pull-up de 10kOhms, 3 pus
 |14(A0)| 10kOhm-GND   |  5V  |
 |15(A1)| 10kOhm-GND   |  5V  |
 |16(A2)| 10kOhm-GND   |  5V  |
+
+###4. Sensor na guia táctil (piezo element)
+Um sensor piezo element conectado o negativo em GND e o positivo à porta A3 com um resistor de 1mOhm e 2 jumper wires.
+
+| UNO  | Positivo | Negativo|
+| ---- |:--------:| ----:|
+| A3   | A3-1mOhm-GND |     |
+| GND  |             |  GND  |
+
+###5. RF transmitter XY-FST (315MHz)
+Um transmissor XY-FST de 315MHz com 3 pinos.
+
+| pins | UNO  | Perna dir |
+| ---- |:--------:| ----:|
+| ATAD | 18(A4)   |  5V  |
+| VCC  | +5V   |  5V  |
+| GND  | GND   |  5V  |
+
+###6. No segundo Arduino, RF receiver XY-RF-5V (315MHz)
+Um receptor XY-RF-5V de 315MHz com 4 pinos dos quais 3 são utilizados.
+
+| pins | UNO |
+| ---- |:---:|
+| GND  | GND |
+| DATA | 03  |
+| DATA |     |
+| VCC  | +5V |
