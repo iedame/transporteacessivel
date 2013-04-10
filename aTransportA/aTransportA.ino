@@ -52,29 +52,28 @@ void loop()
                         if (button1State == HIGH) {  
                           MP3player.playTrack(1);
                           Serial.println("Botao1 pressionado");
-                        }
-                        else {
+                        } else {
                           Serial.println("Botao1 nao pressionado");
                         }
                         // Button2
-                        button2State = digitalRead(button2);
-                        if (button2State == HIGH) {  
-                          MP3player.playTrack(2);
-                          Serial.println("Botao2 pressionado");
-                        }
-                        else {
-                          Serial.println("Botao2 nao pressionado");
-                        }
+                        //button2State = digitalRead(button2);
+                        //if (button2State == HIGH) {  
+                        //  MP3player.playTrack(2);
+                        //  Serial.println("Botao2 pressionado");
+                        //}
+                        //else {
+                        //  Serial.println("Botao2 nao pressionado");
+                        //}
                         // Button3
-                        button3State = digitalRead(button3);
-                        if (button3State == HIGH) {  
-                          MP3player.playTrack(1);
-                          Serial.println("Botao3 pressionado");
-                        }
-                        else {
-                          Serial.println("Botao3 nao pressionado");
-                        }
-                        delay(10000);
+                        //button3State = digitalRead(button3);
+                        //if (button3State == HIGH) {  
+                        //  MP3player.playTrack(1);
+                        //  Serial.println("Botao3 pressionado");
+                        //}
+                        //else {
+                        //  Serial.println("Botao3 nao pressionado");
+                        //}
+                        delay(7000);
                        
             
           }
