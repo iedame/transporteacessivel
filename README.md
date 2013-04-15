@@ -36,7 +36,7 @@ Um sensor piezo element conectado o negativo em GND e o positivo à porta A3 com
 | A3   | A3-1mOhm-GND |     |
 | GND  |             |  GND  |
 
-###5. RF transmitter XY-FST (315MHz)
+###5. RF receiver XY-RF-5V (315MHz)
 Um receptor XY-RF-5V de 315MHz com 4 pinos dos quais 3 são utilizados.
 
 | pins | UNO |
@@ -46,7 +46,7 @@ Um receptor XY-RF-5V de 315MHz com 4 pinos dos quais 3 são utilizados.
 | DATA |     |
 | VCC  | +5V |
 
-###6. No segundo Arduino, RF receiver XY-RF-5V (315MHz)
+###6. No segundo Arduino, RF transmitter XY-FST (315MHz)
 Um transmissor XY-FST de 315MHz com 3 pinos.
 
 | pins | UNO  | Perna dir |
