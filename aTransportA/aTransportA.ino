@@ -29,19 +29,15 @@ void setup()
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);  
   pinMode(button3, INPUT);
+  // RF
   //vw_set_ptt_inverted(true);  // Required by the RF module ---OBS
   //vw_setup(2000);            // bps connection speed ---OBS
-  //vw_set_tx_pin(18);         // RF pin ---OBS
+  //vw_set_rx_pin(18);         // RF pin ---OBS
+  //vw_rx_start();
 }
 
 void loop()
 {
-   //Message to send:
-   //const char *msg = "HELLO WORLD";
-   //vw_send((uint8_t *)msg, strlen(msg));
-   //vw_wait_tx();        // We wait to finish sending the message
-   //delay(200);         // We wait to send the message again      
-   
    // Piezo
    //Serial.print(sensorReading);
    //sensorReading = analogRead(knockSensor);
@@ -97,13 +93,22 @@ void loop()
                         //else {
                         //  Serial.println("Botao3 nao pressionado");
                         //}
-                        
-                        delay(1000);
+                        uint8_t buf[VW_MAX_MESSAGE_LEN];
+                        uint8_t buflen = VW_MAX_MESSAGE_LEN;
+                        if (vw_get_message(buf, &buflen)){
+                        int i;
+                        // Message with proper check    
+                        for (i = 0; i < buflen; i++)
+                        {
+                        Serial.write(buf[i]);  // The received data is stored in the buffer
+                                               // and sent through the serial port to the computer
+                        }
+                        Serial.println();
                        
-            
-          }
-          
+                        }
+           delay(1000);
     }
     
     rfid.halt();
+}
 }
