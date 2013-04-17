@@ -57,3 +57,4 @@ Um transmissor XY-FST de 315MHz com 3 pinos.
 | GND  | GND   |  5V  |
 
 
+###7. Painel
