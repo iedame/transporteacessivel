@@ -30,7 +30,7 @@ void setup()
   pinMode(button2, INPUT);  
   pinMode(button3, INPUT);
   // RF
-  //vw_set_ptt_inverted(true);  // Required by the RF module ---OBS
+  //vw_set_ptt_inverted(true);  // Required by the RF module ---OBS REMOVE
   //vw_setup(2000);            // bps connection speed ---OBS
   //vw_set_rx_pin(18);         // RF pin ---OBS
   //vw_rx_start();
