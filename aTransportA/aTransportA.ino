@@ -81,6 +81,7 @@ void loop()
                         if (validUser == 1){
                           
                         Serial.println("Sistema ativo");
+                        Serial.println("Aguardando escolha de linha...");
                         while (option == 0){
                         // Painel de selecao
                         // Button1
@@ -89,8 +90,10 @@ void loop()
                         //MP3player.playTrack(1);
                           Serial.println("Botao1 pressionado");
                           option = 1;
+                          waiting = true;
                         } else {
-                          Serial.println("Botao1 nao pressionado");
+                          //Waiting for bus selection
+                          //Serial.println("Botao1 nao pressionado");
                         }
                         }
                         // Button2
@@ -123,18 +126,18 @@ void loop()
   if (waiting == true){
     if(option == 1){
       //Mensagem Opcao 1
-      
-      uint8_t buf[VW_MAX_MESSAGE_LEN];
-      uint8_t buflen = VW_MAX_MESSAGE_LEN;
-      if (vw_get_message(buf, &buflen)){
-      int i;
+      Serial.println("Notificacao linha 1");
+      //uint8_t buf[VW_MAX_MESSAGE_LEN];
+      //uint8_t buflen = VW_MAX_MESSAGE_LEN;
+      //if (vw_get_message(buf, &buflen)){
+      //int i;
       // Message with proper check    
-      for (i = 0; i < buflen; i++){
-       Serial.write(buf[i]);
-          }
-      Serial.println();
-                       
-      }
+      //for (i = 0; i < buflen; i++){
+       //Serial.write(buf[i]);
+      //    }
+      //Serial.println();                 
+      //}
+      waiting = false;
     }
     if(option == 2){
      //Mensagem Opcao 2
