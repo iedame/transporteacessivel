@@ -50,6 +50,7 @@ void loop()
    //Serial.print(sensorReading);
    //sensorReading = analogRead(knockSensor);
    //if (sensorReading >= calibracao) {
+   //MP3player.playTrack(1);
    //Serial.println("Transporte acessivel disponivel.");                   
    //}
    //delay(1000);
@@ -73,6 +74,7 @@ void loop()
                         if(rfid.serNum[0] == 137) {
                           Serial.println("Usuario administrativo");
                           validUser = 1;
+                          //MP3player.playTrack(2);
                         } else if(rfid.serNum[0] == 43) {
                           Serial.println("Usuario valido");
                           validUser = 1;
@@ -87,7 +89,7 @@ void loop()
                         // Button1
                         button1State = digitalRead(button1);
                         if (button1State == LOW) {  
-                        //MP3player.playTrack(1);
+                        //MP3player.playTrack(3);
                           Serial.println(" (1) Voce selecionou a linha 701U/10, sentido centro.");
                           option = 1;
                           waiting = true;
@@ -99,7 +101,7 @@ void loop()
                         // Button2
                         //button2State = digitalRead(button2);
                         //if (button2State == LOW) {  
-                        //  MP3player.playTrack(2);
+                        //  MP3player.playTrack(4);
                         //Serial.println(" (2) Voce selecionou a linha 875A/10, sentido centro.");
                         //}
                         //else {
@@ -109,7 +111,7 @@ void loop()
                         // Button3
                         //button3State = digitalRead(button3);
                         //if (button3State == LOW) {  
-                        //  MP3player.playTrack(1);
+                        //  MP3player.playTrack(5);
                         //Serial.println(" (3) Voce selecionou a linha 702C/10, sentido centro.");
                         //}
                         //else {
@@ -126,6 +128,7 @@ void loop()
   if (waiting == true){
     if(option == 1){
       //Mensagem Opcao 1
+      //MP3player.playTrack(6);
       Serial.println(" (1) O onibus 701U/10, sentido centro, esta se aproximando.");
       //uint8_t buf[VW_MAX_MESSAGE_LEN];
       //uint8_t buflen = VW_MAX_MESSAGE_LEN;
@@ -141,9 +144,13 @@ void loop()
     }
     if(option == 2){
      //Mensagem Opcao 2
+     MP3player.playTrack(7);
+     Serial.println(" (2) O onibus 875A/10, sentido centro, esta se aproximando.");
     }
     if(option == 3){
      //Mensagem Opcao 3
+     MP3player.playTrack(8);
+     Serial.println(" (3) O onibus 702C/10, sentido centro, esta se aproximando.");
     }
   }
   else {
