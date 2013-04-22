@@ -50,7 +50,7 @@ void loop()
    //Serial.print(sensorReading);
    //sensorReading = analogRead(knockSensor);
    //if (sensorReading >= calibracao) {
-   //Serial.println("Knock!");                   
+   //Serial.println("Transporte acessivel disponivel.");                   
    //}
    //delay(1000);
                         
@@ -58,7 +58,7 @@ void loop()
           if (rfid.readCardSerial()) {
             
                         Serial.println(" ");
-                        Serial.println("Mifare number  : ");
+                        Serial.println("Numero do cartao Mifare lido: ");
 			Serial.print(rfid.serNum[0],DEC);
                         Serial.print(" , ");
 			Serial.print(rfid.serNum[1],DEC);
@@ -71,10 +71,10 @@ void loop()
                         Serial.println(" ");
                         // Start of card verification
                         if(rfid.serNum[0] == 137) {
-                          Serial.println("Admin User");
+                          Serial.println("Usuario administrativo");
                           validUser = 1;
                         } else if(rfid.serNum[0] == 43) {
-                          Serial.println("User");
+                          Serial.println("Usuario valido");
                           validUser = 1;
                         }
                         // End of verification
@@ -88,7 +88,7 @@ void loop()
                         button1State = digitalRead(button1);
                         if (button1State == LOW) {  
                         //MP3player.playTrack(1);
-                          Serial.println("Botao1 pressionado");
+                          Serial.println(" (1) Voce selecionou a linha 701U/10, sentido centro.");
                           option = 1;
                           waiting = true;
                         } else {
@@ -100,7 +100,7 @@ void loop()
                         //button2State = digitalRead(button2);
                         //if (button2State == LOW) {  
                         //  MP3player.playTrack(2);
-                        //Serial.println("Botao2 pressionado");
+                        //Serial.println(" (2) Voce selecionou a linha 875A/10, sentido centro.");
                         //}
                         //else {
                         //  Serial.println("Botao2 nao pressionado");
@@ -110,7 +110,7 @@ void loop()
                         //button3State = digitalRead(button3);
                         //if (button3State == LOW) {  
                         //  MP3player.playTrack(1);
-                        //Serial.println("Botao3 pressionado");
+                        //Serial.println(" (3) Voce selecionou a linha 702C/10, sentido centro.");
                         //}
                         //else {
                         //  Serial.println("Botao3 nao pressionado");
@@ -126,7 +126,7 @@ void loop()
   if (waiting == true){
     if(option == 1){
       //Mensagem Opcao 1
-      Serial.println("Notificacao linha 1");
+      Serial.println(" (1) O onibus 701U/10, sentido centro, esta se aproximando.");
       //uint8_t buf[VW_MAX_MESSAGE_LEN];
       //uint8_t buflen = VW_MAX_MESSAGE_LEN;
       //if (vw_get_message(buf, &buflen)){
