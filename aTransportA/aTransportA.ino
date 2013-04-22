@@ -10,17 +10,17 @@ SdFat sd;
 SFEMP3Shield MP3player;
 
 // Buttons pins
-const int button1 = 14;
-const int button2 = 15;
-const int button3 = 16;
+const int button1 = 14; //A0
+const int button2 = 15; //A1
+const int button3 = 16; //A2
 // Piezo
 const int knockSensor = A3;
 const int calibracao = 1023;
+int sensorReading = 0;
 // Buttons
 int button1State = 0;
 int button2State = 0;
 int button3State = 0;
-int sensorReading = 0;
 // Panel
 int option = 0;
 int validUser = 0;
@@ -37,9 +37,9 @@ void setup()
   pinMode(button2, INPUT);  
   pinMode(button3, INPUT);
   // RF
-  //vw_set_ptt_inverted(true);  // Required by the RF module ---OBS REMOVE
-  //vw_setup(2000);            // bps connection speed ---OBS
-  //vw_set_rx_pin(18);         // RF pin ---OBS
+  //vw_set_ptt_inverted(true);  // Required by the RF module
+  //vw_setup(2000);            // bps connection speed
+  //vw_set_rx_pin(18);         // RF pin
   //vw_rx_start();
 }
 
