@@ -14,9 +14,12 @@ const int button1 = 14; //A0
 const int button2 = 15; //A1
 const int button3 = 16; //A2
 // Piezo
-const int knockSensor = A3;
-const int calibracao = 1023;
-int sensorReading = 0;
+const int knockSensor = A3; // Piezo ligado ao Pino analógico 3;
+const int calibracao = 1023; // Limite estabelecido para acionamento do aviso sonóro;
+
+int sensorReading = 0; // Armazena valor lido no pino do sensor;
+
+
 // Buttons
 int button1State = 0;
 int button2State = 0;
