@@ -47,13 +47,14 @@ void loop()
 {
   
 // Availability Message
-  //  Serial.print(sensorReading);
-  //  sensorReading = analogRead(knockSensor);
-  //  if (sensorReading >= calibracao) {
-  //  MP3player.playTrack(1);
-  //  Serial.println("Transporte acessivel disponivel.");
-  //  delay(2000);
-  //  }
+   // sensorReading = analogRead(knockSensor);
+   // Serial.println(sensorReading);
+   // delay(1000);
+   // if (sensorReading >= calibracao) {
+   // MP3player.playTrack(1);
+   // Serial.println("Transporte acessivel disponivel.");
+   // delay(2000);
+   // }
                         
     if (rfid.isCard()) {
           if (rfid.readCardSerial()) {
