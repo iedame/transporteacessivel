@@ -15,7 +15,7 @@ const int button2 = 15; //A1
 const int button3 = 16; //A2
 // Piezo
 const int knockSensor = A3; // Piezo ligado ao Pino analógico 3;
-const int calibracao = 1023; // Limite estabelecido para acionamento do aviso sonóro;
+const int calibracao = 6; // Limite estabelecido para acionamento do aviso sonóro;
 int sensorReading = 0; // Armazena valor lido no pino do sensor;
 // Buttons
 int button1State = 0;
@@ -47,15 +47,14 @@ void loop()
 {
   
 // Availability Message
-   // sensorReading = analogRead(knockSensor);
-   // Serial.println(sensorReading);
-   // delay(1000);
-   // if (sensorReading >= calibracao) {
-   // MP3player.playTrack(1);
-   // Serial.println("Transporte acessivel disponivel.");
-   // delay(2000);
-   // }
-                        
+    sensorReading = analogRead(knockSensor);
+    //Serial.println(sensorReading);
+    if (sensorReading >= calibracao) {
+      //MP3player.playTrack(1);
+      Serial.println("Transporte acessivel disponivel.");
+      delay(2000);
+    }
+    
     if (rfid.isCard()) {
           if (rfid.readCardSerial()) {
             
