@@ -31,10 +31,11 @@ int option = 0; // Armazena opcao selecionada no painel
 int validUser = 0; // Armazena se usuario e valido
 boolean waiting = false; // Verifica espera por onibus
 
+// Setup
 void setup()
 { 
-  Serial.begin(9600);
-  SPI.begin(); 
+  Serial.begin(9600); // abre porta serial, define taxa de dados em 9600 bps
+  SPI.begin();
   rfid.init();
   sd.begin(SD_SEL, SPI_HALF_SPEED);
   MP3player.begin();
