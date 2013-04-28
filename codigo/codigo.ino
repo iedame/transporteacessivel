@@ -1,13 +1,13 @@
-#include <SPI.h>
-#include <SdFat.h>
-#include <SdFatUtil.h> 
-#include <SFEMP3Shield.h>
-#include <RFID.h>
-#include <VirtualWire.h>
+#include <SPI.h> // SPI Bus
+#include <SdFat.h> // SD card
+#include <SdFatUtil.h> // Utilitarios SD card
+#include <SFEMP3Shield.h> // Biblioteca MP3 Shield
+#include <RFID.h> // Biblioteca MF522-AN RFID
+#include <VirtualWire.h> // Biblioteca RF
 
-RFID rfid(10,5);
-SdFat sd;
-SFEMP3Shield MP3player;
+RFID rfid(10,5); // Pinos do RFID
+SdFat sd; // Inicializa SD
+SFEMP3Shield MP3player; // Inicializa MP3 Shield
 
 // Buttons pins
 const int button1 = 14; //A0
@@ -47,13 +47,14 @@ void loop()
 {
   
 // Availability Message
-    sensorReading = analogRead(knockSensor);
+    //sensorReading = analogRead(knockSensor);
     //Serial.println(sensorReading);
-    if (sensorReading >= calibracao) {
+    //if (sensorReading >= calibracao) {
       //MP3player.playTrack(1);
-      Serial.println("Transporte acessivel disponivel.");
-      delay(2000);
-    }
+      //Serial.println("Transporte acessivel disponivel.");
+      //delay(2000);
+      //MP3player.stopTrack();
+    //}
     
     if (rfid.isCard()) {
           if (rfid.readCardSerial()) {
@@ -87,40 +88,33 @@ void loop()
                         Serial.println("Aguardando escolha de linha...");
                         while (option == 0){
                         // Painel de selecao
-                        // Button1
                         button1State = digitalRead(button1);
+                        button2State = digitalRead(button2);
+                        button3State = digitalRead(button3);
+                        // Button1
                         if (button1State == LOW) {  
                           MP3player.playTrack(3);
                           Serial.println(" (1) Voce selecionou a linha 701U/10, sentido centro.");
                           delay(5000);
                           option = 1;
                           waiting = true;
-                        } else {
-                          //Waiting for bus selection
-                          //Serial.println("Botao1 nao pressionado");
-                        }
                         }
                         // Button2
-                        //button2State = digitalRead(button2);
-                        //if (button2State == LOW) {  
-                        //  MP3player.playTrack(4);
-                        //Serial.println(" (2) Voce selecionou a linha 875A/10, sentido centro.");
-                        // delay(5000);
-                        //}
-                        //else {
-                        //  Serial.println("Botao2 nao pressionado");
-                        //}
-                        
+                        if (button2State == LOW) {  
+                          MP3player.playTrack(4);
+                        Serial.println(" (2) Voce selecionou a linha 875A/10, sentido centro.");
+                         delay(5000);
+                         option = 2;
+                         waiting = true;
+                        }
                         // Button3
-                        //button3State = digitalRead(button3);
-                        //if (button3State == LOW) {  
-                        //  MP3player.playTrack(5);
-                        //Serial.println(" (3) Voce selecionou a linha 702C/10, sentido centro.");
-                        // delay(5000);
-                        //}
-                        //else {
-                        //  Serial.println("Botao3 nao pressionado");
-                        //}
+                        if (button3State == LOW) {  
+                          MP3player.playTrack(5);
+                        Serial.println(" (3) Voce selecionou a linha 702C/10, sentido centro.");
+                         delay(5000);
+                         option = 3;
+                         waiting = true;
+                        }
                         }
            delay(1000);
     }
@@ -146,21 +140,27 @@ void loop()
       //Serial.println();                 
       //}
       waiting = false;
+      option = 0;
     }
     if(option == 2){
      //Mensagem Opcao 2
      MP3player.playTrack(7);
      Serial.println(" (2) O onibus 875A/10, sentido centro, esta se aproximando.");
      delay(6000);
+     waiting = false;
+     option = 0;
     }
     if(option == 3){
      //Mensagem Opcao 3
      MP3player.playTrack(8);
      Serial.println(" (3) O onibus 702C/10, sentido centro, esta se aproximando.");
      delay(5000);
+     waiting = false;
+     option = 0;
     }
   }
   else {
   option = 0;
   }
+ }
 }
