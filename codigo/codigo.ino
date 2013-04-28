@@ -1,30 +1,35 @@
+// Bibliotecas
 #include <SPI.h> // SPI Bus
 #include <SdFat.h> // SD card
 #include <SdFatUtil.h> // Utilitarios SD card
-#include <SFEMP3Shield.h> // Biblioteca MP3 Shield
-#include <RFID.h> // Biblioteca MF522-AN RFID
-#include <VirtualWire.h> // Biblioteca RF
+#include <SFEMP3Shield.h> // MP3 Shield
+#include <RFID.h> // MF522-AN RFID
+#include <VirtualWire.h> // RF
 
-RFID rfid(10,5); // Pinos do RFID
+// Inicializacoes
+RFID rfid(10,5); // Inicializa RFID (Pinos)
 SdFat sd; // Inicializa SD
 SFEMP3Shield MP3player; // Inicializa MP3 Shield
 
-// Buttons pins
+// Pinagem botoes do painel
 const int button1 = 14; //A0
 const int button2 = 15; //A1
 const int button3 = 16; //A2
-// Piezo
-const int knockSensor = A3; // Piezo ligado ao Pino analógico 3;
-const int calibracao = 6; // Limite estabelecido para acionamento do aviso sonóro;
-int sensorReading = 0; // Armazena valor lido no pino do sensor;
-// Buttons
-int button1State = 0;
-int button2State = 0;
-int button3State = 0;
-// Panel
-int option = 0;
-int validUser = 0;
-boolean waiting = false;
+
+// Sensor piezo
+const int knockSensor = A3; // Pino do sensor
+const int calibracao = 6; // Valor de calibragem para ativacao
+int sensorReading = 0; // Armazena valor lido no pino do sensor
+
+// Botoes
+int button1State = 0; // Estado inicial desligado
+int button2State = 0; // - - -
+int button3State = 0; // - - -
+
+// Painel
+int option = 0; // Armazena opcao selecionada no painel
+int validUser = 0; // Armazena se usuario e valido
+boolean waiting = false; // Verifica espera por onibus
 
 void setup()
 { 
