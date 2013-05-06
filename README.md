@@ -46,6 +46,9 @@ Um receptor XY-RF-5V de 315MHz com 4 pinos dos quais 3 são utilizados.
 | DATA |     |
 | VCC  | +5V |
 
+###6. LED aviso visual para parada
+1. LED -  GND (+resistor) e uma porta digital
+
 ## Segundo Arduino (Ônibus)
 ###6. RF transmitter XY-FST (315MHz)
 Um transmissor XY-FST de 315MHz com 3 pinos.
@@ -58,3 +61,5 @@ Um transmissor XY-FST de 315MHz com 3 pinos.
 
 
 ###7. Painel
+
+1. botão para avisar no ponto da chegada e instruções
