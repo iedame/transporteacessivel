@@ -17,7 +17,7 @@ void loop()
   button1State = digitalRead(button1);
   if (button1State == LOW) { 
      //Message to send:
-   const char *msg = "701U10STOP"; // Identificador do onibus transmitido
+   const char *msg = "701U10PARADA"; // Identificador do onibus transmitido
    vw_send((uint8_t *)msg, strlen(msg));
    vw_wait_tx();        // Espera a mensagem ser enviada
    delay(200);         // Espera antes de enviar a mensagem novamente  
