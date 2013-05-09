@@ -63,3 +63,8 @@ Um transmissor XY-FST de 315MHz com 3 pinos.
 ###7. Painel
 
 1. botão para avisar no ponto da chegada e instruções
+
+###8. Buzzer
+
+1. Buzzer para aviso sonoro de que o sistema está ligado, e para aviso de que sinal de parada foi reconhecido corretamente
+
