@@ -1,12 +1,13 @@
 // Bibliotecas
 #include <VirtualWire.h> // RF
 // Inicializacoes
-const int button1 = 5; // Porta digital
-const int buzzer = 9;
+const int button1 = 8; // A0
+const int buzzer = 3;
 int button1State = 0; // Estado inicial desligado
 // Setup
 void setup()
 {
+    Serial.begin(9600);  
     pinMode(button1, INPUT);
     pinMode(buzzer, OUTPUT);
     beep(50);
@@ -14,7 +15,7 @@ void setup()
     beep(50);
     vw_set_ptt_inverted(true);  // Necessario para o modulo RF
     vw_setup(2000);            // Velocidade de conexao em bps
-    vw_set_tx_pin(3);         // Pino do Arduino conectado a Data
+    vw_set_tx_pin(5);         // Pino do Arduino conectado a Data
 }
 // Loop 
 void loop()
@@ -27,6 +28,7 @@ void loop()
    const char *msg = "701U10PARADA"; // Identificador do onibus transmitido
    vw_send((uint8_t *)msg, strlen(msg));
    vw_wait_tx();        // Espera a mensagem ser enviada
+   Serial.println("Parada");
    delay(200);         // Espera antes de enviar a mensagem novamente  
   }
   else {
@@ -34,6 +36,7 @@ void loop()
    const char *msg = "701U10"; // Identificador do onibus transmitido
    vw_send((uint8_t *)msg, strlen(msg));
    vw_wait_tx();        // Espera a mensagem ser enviada
+   Serial.println("Chegada");
    delay(200);         // Espera antes de enviar a mensagem novamente  
   }   
 }
