@@ -1,7 +1,7 @@
 // Bibliotecas
 #include <VirtualWire.h> // RF
 // Inicializacoes
-const int button1 = 8; // A0
+const int button1 = 9; // A0
 const int buzzer = 3;
 int button1State = 0; // Estado inicial desligado
 // Setup

@@ -39,6 +39,8 @@ void setup()
   rfid.init();
   sd.begin(SD_SEL, SPI_HALF_SPEED);
   MP3player.begin();
+  MP3player.setDifferentialOutput(1);
+  MP3player.setVolume(6, 6);
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);  
   pinMode(button3, INPUT);
