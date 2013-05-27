@@ -29,7 +29,7 @@ void loop()
    vw_send((uint8_t *)msg, strlen(msg));
    vw_wait_tx();        // Espera a mensagem ser enviada
    Serial.println("Parada");
-   delay(200);         // Espera antes de enviar a mensagem novamente  
+   delay(20);         // Espera antes de enviar a mensagem novamente  
   }
   else {
    //Message to send:
@@ -37,7 +37,7 @@ void loop()
    vw_send((uint8_t *)msg, strlen(msg));
    vw_wait_tx();        // Espera a mensagem ser enviada
    Serial.println("Chegada");
-   delay(200);         // Espera antes de enviar a mensagem novamente  
+   delay(20);         // Espera antes de enviar a mensagem novamente  
   }   
 }
 

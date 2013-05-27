@@ -35,6 +35,13 @@ boolean waiting = false; // Verifica espera por onibus
 void setup()
 { 
   Serial.begin(9600); // abre porta serial, define taxa de dados em 9600 bps
+  // RF
+  //vw_set_ptt_pin(18);
+  vw_set_ptt_inverted(true);  // Required by the RF module
+  vw_setup(2000);            // bps connection speed
+  vw_set_rx_pin(18);         // RF pin A4
+  vw_rx_start();
+  // SPI, RFID e MP3
   SPI.begin();
   rfid.init();
   sd.begin(SD_SEL, SPI_HALF_SPEED);
@@ -44,11 +51,7 @@ void setup()
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);  
   pinMode(button3, INPUT);
-  // RF
-  //vw_set_ptt_inverted(true);  // Required by the RF module
-  //vw_setup(2000);            // bps connection speed
-  //vw_set_rx_pin(18);         // RF pin
-  //vw_rx_start();
+  
 }
 
 void loop()
@@ -134,20 +137,30 @@ void loop()
   if (waiting == true){
     if(option == 1){
       //Mensagem Opcao 1
+       // RF
+      while(waiting == true){
+      uint8_t buf[VW_MAX_MESSAGE_LEN];
+      uint8_t buflen = VW_MAX_MESSAGE_LEN;
+      if (vw_get_message(buf, &buflen)) {
+        int i;
+        Serial.print("Got: ");
+      // Message with proper check    
+        for (i = 0; i < buflen; i++){
+           Serial.print(buf[i], HEX);
+           Serial.print(" ");
+          }
+      Serial.println();   
+      waiting = false;      
+      }
+     else {
+        Serial.println("nada enviado");
+      }
+     }
       MP3player.playTrack(6);
       Serial.println(" (1) O onibus 701U/10, sentido centro, esta se aproximando.");
       delay(5000);
-      //uint8_t buf[VW_MAX_MESSAGE_LEN];
-      //uint8_t buflen = VW_MAX_MESSAGE_LEN;
-      //if (vw_get_message(buf, &buflen)){
-      //int i;
-      // Message with proper check    
-      //for (i = 0; i < buflen; i++){
-       //Serial.write(buf[i]);
-      //    }
-      //Serial.println();                 
-      //}
-      waiting = false;
+      
+      //waiting = false;
       option = 0;
     }
     if(option == 2){
