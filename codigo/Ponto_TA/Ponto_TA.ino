@@ -51,6 +51,7 @@ void setup()
   pinMode(button1, INPUT);
   pinMode(button2, INPUT);  
   pinMode(button3, INPUT);
+  pinMode(19, OUTPUT); // LED na porta A5
   
 }
 
@@ -107,6 +108,7 @@ void loop()
                           MP3player.playTrack(3);
                           Serial.println(" (1) Voce selecionou a linha 701U/10, sentido centro.");
                           delay(5000);
+                          digitalWrite(19, HIGH);
                           option = 1;
                           waiting = true;
                         }
@@ -137,30 +139,12 @@ void loop()
   if (waiting == true){
     if(option == 1){
       //Mensagem Opcao 1
-       // RF
-      while(waiting == true){
-      uint8_t buf[VW_MAX_MESSAGE_LEN];
-      uint8_t buflen = VW_MAX_MESSAGE_LEN;
-      if (vw_get_message(buf, &buflen)) {
-        int i;
-        Serial.print("Got: ");
-      // Message with proper check    
-        for (i = 0; i < buflen; i++){
-           Serial.print(buf[i], HEX);
-           Serial.print(" ");
-          }
-      Serial.println();   
-      waiting = false;      
-      }
-     else {
-        Serial.println("nada enviado");
-      }
-     }
+      Serial.println("Sinal de chegada recebido");
       MP3player.playTrack(6);
       Serial.println(" (1) O onibus 701U/10, sentido centro, esta se aproximando.");
       delay(5000);
-      
-      //waiting = false;
+      digitalWrite(19, LOW);
+      waiting = false;
       option = 0;
     }
     if(option == 2){
